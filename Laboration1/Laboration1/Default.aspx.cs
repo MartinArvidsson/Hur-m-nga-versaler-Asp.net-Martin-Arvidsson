@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Laboration1.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -13,29 +14,14 @@ namespace Laboration1
         {
 
         }
-        
-        protected void Button_Click(object sender, EventArgs e)
+
+        protected void RunButton_Click(object sender, EventArgs e)
         {
-            if(Button.Text !="Starta om")
-            {
-                int Versaler = 0;
-                string Information = Textbox.Text;
-                for (int i = 0; i < Information.Length; i++)
-                {
-                    if (char.IsUpper(Information[i])) Versaler++;
-                }
-                
-                Result.Text = string.Format("Det fanns {0} Versaler", Versaler);
-                Button.Text = "Starta om";
-                Textbox.Enabled = false;
-            }
-            else
-            {
-                Button.Text = "Kör!";
-                Result.Text = "";
-                Textbox.Text = "";
-                Textbox.Enabled = true;
-            }
+            ResultLabel.Text = TextAnalyzer.NumberOfCapitals(Textbox.Text).ToString();
+            Textbox.Enabled = false;
+            ResultPanel.Visible = true;
+            RunButton.Visible = false;
+            ResetButton.Visible = true;
         }
     }
 }
